@@ -1,6 +1,8 @@
 <?php 
 $salario =(float) $_GET['salario'];
+$vt = $salario * 00.8;
 $inss= $salario * 0.11;
-$total=$salario -$inss;
-echo "Salario : $salario Desconto :$inss Pagamento total : $total";
+$desconto= $inss + $vt;
+$total= $salario -$desconto;
+echo "Salario : $salario Desconto :$desconto Pagamento total : $total";
 ?>
