@@ -18,7 +18,7 @@ foreach($nomes as $nome){
 <ul>
 
 
-<table>
+<table border="1">
 <?php
 /*
 Crie um array multidimensional com 2 clientes, cada um contendo:
@@ -35,14 +35,18 @@ $clientes=[
 
 
 foreach($clientes as $cliente){
+
     echo "
             <tr>
-                <td>{$cliente['nome']}</td> 
-                " .
-                "
+                <td>{$cliente['nome']}</td> .
+                <td>{$cliente['cpf']}</td> .
+                <td>{$cliente['cidade']}</td> .  
             </tr>
-        ";
-?>
+     
 
+     ";
+}
+?>
 </table>
+
 

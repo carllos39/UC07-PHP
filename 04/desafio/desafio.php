@@ -1,0 +1,32 @@
+<!--
+PHP + HTML
+
+Crie um formulário que permita cadastrar até 3 produtos (nome e preço)
+Use funções para:
+- Inserir os produtos no array
+- Listar os produtos cadastrados
+- Calcular a média dos preços
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h1>Cadstro de Produtos</h1>
+    <form action="produto.php" method="get">
+        <div>
+            <label for="produto">Produto :</label>
+            <input type="text" name="produto" id="produto">
+        </div>
+        <div>
+            <label for="preco">Preço :</label>
+            <input type="text" name="preco" id="preco">
+        </div>
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>
