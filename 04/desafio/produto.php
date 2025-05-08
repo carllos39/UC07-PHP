@@ -1,30 +1,20 @@
 <?php 
-$produto = $_GET['produto'];
+$nome = $_GET['nome'];
 $preco = $_GET['preco'];
+$produtos=[];
 
-$produtos[]= [$produto, $preco];
+function cadastrarProdutos(array $itens):  {
+    $total = 0;
+    foreach ($itens as $item){
+        $total += $item['nome','preco'];
+    
+    }
+    return $total;
+}
+echo "Total:  " cadastrarProdutosProdutos($produtos);
 
 
-print_r($produtos);
+
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lista</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>Produto</th>
-            <th>Preço</th>
-        </tr>
-        <?php foreach($produtos as $pro){
-            
-        }
-    </table>
-    
-</body>
-</html>
