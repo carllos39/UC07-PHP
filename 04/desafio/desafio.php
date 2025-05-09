@@ -19,8 +19,8 @@ Use funções para:
     <h1>Cadstro de Produtos</h1>
     <form action="produto.php" method="get">
         <div>
-            <label for="produto">Produto :</label>
-            <input type="text" name="produto" id="produto">
+            <label for="nome">Produto :</label>
+            <input type="text" name="nome" id="nome">
         </div>
         <div>
             <label for="preco">Preço :</label>

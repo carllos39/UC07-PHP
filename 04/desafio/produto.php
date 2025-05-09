@@ -1,11 +1,19 @@
 <?php 
-$produto = $_GET['produto'];
-$preco = $_GET['preco'];
 
-$produtos[]= [$produto, $preco];
+session_start();
 
+if(!isset($_SESSION['produtos'])) {
+    $_SESSION['produtos'] = [];
+}
 
-print_r($produtos);
+if (isset($_GET['nome']) && isset($_GET['preco'])) {
+    $nome = $_GET['nome'];
+    $preco = (float) $_GET['preco'];    
+
+    $_SESSION['produtos'][] = ["nome" => $nome, "preco" => $preco];
+}
+
+$produtos = $_SESSION['produtos'];
 ?>
 
 <!DOCTYPE html>
@@ -13,18 +21,21 @@ print_r($produtos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lista</title>
+    <title>Document</title>
 </head>
 <body>
     <table>
         <tr>
             <th>Produto</th>
-            <th>Preço</th>
+            <th>Preco</th>
         </tr>
-        <?php foreach($produtos as $pro){
-            
-        }
     </table>
-    
+    <?php foreach($produtos as $produto){?>
+      <tr>
+        <td><?=$produto['produto']?></td>
+        <td><?=$produto['nome']?></td>
+      </tr>
+    <?php }?>
 </body>
 </html>
+
