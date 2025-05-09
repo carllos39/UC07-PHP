@@ -1,4 +1,5 @@
 <?php 
+<<<<<<< HEAD
 
 session_start();
 
@@ -39,3 +40,12 @@ $produtos = $_SESSION['produtos'];
 </body>
 </html>
 
+=======
+$nome = $_GET['nome'];
+$preco = $_GET['preco'];
+
+$produtos[]=[$nome,$preco];
+print_r($produtos);
+?>
+
+>>>>>>> 70169cf9001147ef4c48833226c453e2d2cc6f32
