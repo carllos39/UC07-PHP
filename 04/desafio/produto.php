@@ -1,5 +1,4 @@
 <?php 
-<<<<<<< HEAD
 
 session_start();
 
@@ -33,19 +32,10 @@ $produtos = $_SESSION['produtos'];
     </table>
     <?php foreach($produtos as $produto){?>
       <tr>
-        <td><?=$produto['produto']?></td>
         <td><?=$produto['nome']?></td>
+        <td><?=$produto['preco']?></td>
       </tr>
     <?php }?>
 </body>
 </html>
 
-=======
-$nome = $_GET['nome'];
-$preco = $_GET['preco'];
-
-$produtos[]=[$nome,$preco];
-print_r($produtos);
-?>
-
->>>>>>> 70169cf9001147ef4c48833226c453e2d2cc6f32
