@@ -25,6 +25,10 @@ class Produto {
             throw(new Error("Invalid Name"));
         }
     }
+    public function __toString()
+    {
+        return "Nome: $this->nome, Preço: $this->preco <br>";
+    }
 }
 
 $p1 = new Produto('Abobora', 5.2);
