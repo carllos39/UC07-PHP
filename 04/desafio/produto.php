@@ -14,6 +14,17 @@ if (isset($_GET['nome']) && isset($_GET['preco'])) {
 }
 
 $produtos = $_SESSION['produtos'];
+
+
+function calcularPreco(array $itens){
+$total=0;
+foreach($itens as $item){
+    $total += $item['preco'];
+
+}
+return $total;
+}
+echo"Total :".number_format(calcularPreco($produtos));
 ?>
 
 <!DOCTYPE html>
@@ -39,27 +50,4 @@ $produtos = $_SESSION['produtos'];
 </body>
 </html>
 
-<<<<<<< HEAD
-=======
-=======
-$nome = $_GET['nome'];
-$preco = $_GET['preco'];
-$produtos=[];
-
-function cadastrarProdutos(array $itens):  {
-    $total = 0;
-    foreach ($itens as $item){
-        $total += $item['nome','preco'];
-    
-    }
-    return $total;
-}
-echo "Total:  " cadastrarProdutosProdutos($produtos);
-
-
-
-
-?>
-
->>>>>>> 70169cf9001147ef4c48833226c453e2d2cc6f32
 >>>>>>> d7fea2f6a58bf0c4c64ca87679e3f969d7199bac
