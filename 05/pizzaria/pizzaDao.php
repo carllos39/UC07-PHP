@@ -1,18 +1,20 @@
 <?php 
-require 'pizza.php';
+require 'Conexao.php';
+require 'Pizza.php';
+
 
     class PizzaDao
     {
-        private $db;
+        private $bd;
     
-        public function __construct()
-        {
-            $this->db = Conexao::getBd();
-        }
+       public function __construct(){
+       $this->bd = Conexao::getBd();
+        
+    }
     
         public function getAll()
         {        
-            $stmt = $this->db->query("SELECT * FROM pizza");
+            $stmt = $this->bd->query("SELECT * FROM pizza");
             $pizzas = [];
     
             while ($row = $stmt->fetch((PDO::FETCH_ASSOC))) {
@@ -27,7 +29,7 @@ require 'pizza.php';
         }
 
         public function create(Pizza $pizza) {
-            $stmt = $this->db->prepare("INSERT INTO pizza (sabor, tamanho, preco)
+            $stmt = $this->bd->prepare("INSERT INTO pizza (sabor, tamanho, preco)
                 VALUES (:sabor, :tamanho, :preco)");
     
             $sabor = $pizza->getSabor();

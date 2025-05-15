@@ -2,13 +2,13 @@
 require_once 'PizzaDao.php';
 require_once 'Pizza.php';
 $dao =new PizzaDao();
+
 if(isset($_POST['sabor']) && isset($_POST['tamanho']) && isset($_POST['preco'])) {
 $sabor = $_POST['sabor'];
 $tamanho = $_POST['tamanho'];
 $preco = $_POST['preco'];
 
 $pizza =new Pizza(null,$sabor,$tamanho,$preco);
-$dao =new PizzaDao();
 $dao->create($pizza);
 
 header("Location: index.php");
