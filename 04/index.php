@@ -1,7 +1,7 @@
 <?php 
 
 function saudacao() : void{
-    echo"Bem vilndo ao sistema!" ."<br>";
+    echo"Bem vindo ao sistema!" ."<br>";
 }
 
 saudacao();
@@ -37,12 +37,14 @@ function subtrair(int $a, int $b){
             foreach($nomes as $n){
                 echo"<li>$n</li>";
             }
+
+            $professores=["Celso", "Luana", "Arlindo"];
+            echo "<ul>";
+            listarNomes($professores);
+            echo "</ul>";
         }
 
-        $professores = ["Celso", "Luana", "Arlindo"];
-        echo "<ul>";
-        listarNomes($professores);
-        echo "</ul>";
+      
 ?>
 
 
