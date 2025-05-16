@@ -11,11 +11,12 @@ public function __construct()
 
 public function getAll(){
     $sql="SELECT* FROM contatos";
+    $contatos=[];
    $stmt = $this->db->query($sql);
 
    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $contatos=[];
-  $contatos = new Contato($row['id'],$row['nome']);
+  
+  $contatos[] = new Contato($row['id'],$row['nome']);
    }
    return $contatos;
 }
