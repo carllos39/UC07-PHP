@@ -1,5 +1,5 @@
 <?php 
-require_once 'ContatoDAO';
+require_once 'ContatoDAO.php';
 $dao = new ContatoDAO();
 $contatos=$dao->getAll();
 ?>
@@ -23,8 +23,8 @@ $contatos=$dao->getAll();
         </tr>
         <?php foreach($contatos as $contato): ?>
           <tr>
-           <td><?$contato->getId()?></td>
-           <td><?$contato->getNome()?></td>
+           <td><?=$contato->getId()?></td>
+           <td><?=$contato->getNome()?></td>
            <td>
            <a href="#">Detalhes</a>
             <a href="#">Editar</a>
