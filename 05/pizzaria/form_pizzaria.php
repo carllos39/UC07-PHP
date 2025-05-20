@@ -22,12 +22,15 @@ $pizzas = $bd->getAll();
             <th>Sabor :</th>
             <th>Tamanho :</th>
             <th>Preço:</th>
+            <th>Ação</th>
+        </tr>
             <?php foreach($pizzas as $pizza){?>
              <tr>
                 <td><?=$pizza->getId()?></td>
                 <td><?=$pizza->getSabor()?></td>
                 <td><?=$pizza->getTamanho()?></td>
                 <td><?=$pizza->getPreco()?></td>
+                <td><a href="delete_pizza.php?id=<?=$pizza->getId()?>"></a></td>
              </tr>
             <?php }?>
         </tr>

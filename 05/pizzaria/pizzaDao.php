@@ -43,7 +43,18 @@ class PizzaDAO
             $stmt->bindParam(':preco', $preco);
             $stmt->execute();
         }
+        public function delete($id){
+            try{
+       $sql="DELETE FROM pizza WHERE id=:id";
+       $stmt = $this->db->prepare($sql);
+       $stmt->execute([':id'=>$id]);
+       return true;
+            }catch(PDOException $e){
+   error_log($e->getMessage());
+            }
+        }
     }
+
 
 
 
