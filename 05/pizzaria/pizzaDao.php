@@ -43,6 +43,21 @@ class PizzaDAO
             $stmt->bindParam(':preco', $preco);
             $stmt->execute();
         }
+        public function alterar(Pizza $pizza) {
+            $stmt = $this->bd->prepare("UPDATE pizza SET sabor=:sabor, tamanho=:tamanho, preco=:preco");
+
+    
+            $sabor = $pizza->getSabor();
+            $tamanho = $pizza->getTamanho();
+            $preco = $pizza->getPreco();
+            $Id = $pizza->getId();
+    
+            $stmt->bindParam(':sabor', $sabor);
+            $stmt->bindParam(':tamanho', $tamanho );
+            $stmt->bindParam(':preco', $preco);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
         public function delete($id){
             try{
        $sql="DELETE FROM pizza WHERE id=:id";

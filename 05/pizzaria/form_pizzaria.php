@@ -30,7 +30,8 @@ $pizzas = $bd->getAll();
                 <td><?=$pizza->getSabor()?></td>
                 <td><?=$pizza->getTamanho()?></td>
                 <td><?=$pizza->getPreco()?></td>
-                <td><a href="delete_pizza.php?id=<?=$pizza->getId()?>"></a></td>
+                <td><a href="alterar_pizza.php?id=<?=$pizza->getId()?>">Alterar</a></td>
+                <td><a href="delete_pizza.php?id=<?=$pizza->getId()?>">Excluir</a></td>
              </tr>
             <?php }?>
         </tr>
