@@ -1,6 +1,7 @@
-<?php 
+<?php
 require_once 'ContatoDAO.php';
 $dao = new ContatoDAO();
+$contato = null; // Contato para a edição
 
 $contato=null; //Contato para edição
 
@@ -39,6 +40,7 @@ if(isset($_POST['endereco'])){
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

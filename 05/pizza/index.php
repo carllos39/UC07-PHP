@@ -3,15 +3,18 @@ require_once 'PizzaDAO.php';
 require_once 'Pizza.php';
 
 $dao = new PizzaDAO();
+$pizza=null;
 
 if(isset($_POST['sabor'])&& isset($_POST['tamanho'])&& isset($_POST['preco'])){
     $sabor =$_POST['sabor'];
     $tamanho =$_POST['tamanho'];
     $preco =$_POST['preco'];
 
+
+
     $pizza = new Pizza(null,$sabor,$tamanho,$preco);
     $dao->create($pizza);
-    header("location:index.php");
+    header("location:form_pizzaria.php");
 
 }
 ?>

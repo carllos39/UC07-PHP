@@ -22,15 +22,20 @@ $pizzas = $bd->getAll();
             <th>Sabor :</th>
             <th>Tamanho :</th>
             <th>Preço:</th>
+            <th>Ação:</th>
+            <th>Ação:</th>
+        </tr>
             <?php foreach($pizzas as $pizza){?>
              <tr>
                 <td><?=$pizza->getId()?></td>
                 <td><?=$pizza->getSabor()?></td>
                 <td><?=$pizza->getTamanho()?></td>
                 <td><?=$pizza->getPreco()?></td>
+                <td><a href="alterar_pizza.php?id=<?=$pizza->getId()?>">Alterar</a></td>
+                <td><a href="excluir_pizza.php?id=<?=$pizza->getId()?>">Excluir</a></td>
              </tr>
             <?php }?>
-        </tr>
+    
     </table>
 <a href="index.php">Cadastrar</a>
 </body>
