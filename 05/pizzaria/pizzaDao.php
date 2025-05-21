@@ -1,6 +1,6 @@
 <?php 
-require 'Conexao.php';
-require 'Pizza.php';
+require_once 'Conexao.php';
+require_once 'Pizza.php';
 
 
 class PizzaDAO

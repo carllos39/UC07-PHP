@@ -1,6 +1,5 @@
 <?php 
-require_once 'PizzaDAO.php';
-require_once 'Pizza.php';
+require 'pizza.php';
 
 require 'PizzaDao.php';
 

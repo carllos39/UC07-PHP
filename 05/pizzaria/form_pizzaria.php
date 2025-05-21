@@ -1,5 +1,5 @@
 <?php
-require 'PizzaDAO.php';
+require_once 'pizzaDao.php';
 
 $bd = new PizzaDAO();
 $pizzas = $bd->getAll();
