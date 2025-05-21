@@ -19,16 +19,34 @@ class PizzaDAO
             $stmt = $this->bd->query("SELECT * FROM pizza");
             $pizzas = [];
     
-            while ($row = $stmt->fetch((PDO::FETCH_ASSOC))) {
+            while ($pizza = $stmt->fetch((PDO::FETCH_ASSOC))) {
                 $pizzas[] = new Pizza(
-                    $row['id'],
-                    $row['sabor'],
-                    $row['tamanho'],
-                    $row['preco']
+                    $pizza['id'],
+                    $pizza['sabor'],
+                    $pizza['tamanho'],
+                    $pizza['preco']
                 );
             }
             return $pizzas;
         }
+         
+        public function getById($id){
+            try{
+             $sql="SELECT * FROM pizza WHERE id=:id"; 
+            $stmt = $this->bd->query($sql);
+            $stmt->execute([':id'=>$id]);
+            $pizza=$stmt->fetch(PDO::FETCH_ASSOC);
+            return  $pizza = new Pizza(
+                    $pizza['id'],
+                    $pizza['sabor'],
+                    $pizza['tamanho'],
+                    $pizza['preco']
+                );
+            }catch(PDOException $e){
+          error_log($e->getMessage());
+          return false;
+            }
+            }
 
         public function create(Pizza $pizza) {
             $stmt = $this->bd->prepare("INSERT INTO pizza (sabor, tamanho, preco)
