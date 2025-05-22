@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
+
 require_once 'PizzaDao.php';
 require_once 'Pizza.php';
 $dao =new PizzaDao();
@@ -7,7 +10,7 @@ $pizza=null;//pizza para edição
 
 //Edição de pizza
 if(isset($_GET['id'])){
-$pizza=$dao->getById($_GET['id']);
+    $pizza = $dao->getById($_GET['id']);
 }
 //Salvar a edição de pizza
 if(isset($_POST['id'])){
@@ -28,6 +31,7 @@ if(isset($_POST['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Pizza</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <h1><?=$pizza ?"Editar  Pizza":"Cadastrar pizza"?></h1>

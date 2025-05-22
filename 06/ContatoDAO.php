@@ -42,6 +42,7 @@ public function create(Contato $contato){
  $stmt->bindParam(':endereco',$endereco);
  $stmt->execute();
 }
+
 public function update(Contato $contato){
  $sql="UPDATE contato SET nome=:nome,telefone=:telefone,email=:email,endereco=:endereco WHERE id=:id";
  $stmt= $this->db->prepare($sql);
@@ -56,25 +57,6 @@ public function update(Contato $contato){
  $stmt->bindParam(':email',$email);
  $stmt->bindParam(':endereco',$endereco);
  $stmt->execute();
-}
-public function update(Contato $contatos){
-  $sql="UPDATE contatos SET nome=:nome,telefone=:telefone,email=:email,endereco=:endereco WHERE id=:id";
-  $stmt =$this->db->prepare($sql);
-
-  $id = $contatos->getId();
-  $nome = $contatos->getNome();
-  $telefone = $contatos->getTelefone();
-  $email = $contatos->getEmail();
-  $endereco = $contatos->getEndereco();
-  
-  $stmt = $this->db->prepare($sql);
-  $stmt->bindParam(':id', $id);
-  $stmt->bindParam(':nome', $nome);
-  $stmt->bindParam(':telefone', $telefone);
-  $stmt->bindParam(':email', $email);
-  $stmt->bindParam(':endereco', $endereco);
-
-  $stmt->execute();
 }
 public function delete(int $id): void
 {
