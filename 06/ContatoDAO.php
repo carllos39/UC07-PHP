@@ -10,7 +10,7 @@ public function __construct()
 }
 
 public function getAll(){
-    $sql="SELECT* FROM contatos";
+    $sql="SELECT* FROM contato";
     $contatos=[];
    $stmt = $this->db->query($sql);
 
@@ -23,14 +23,14 @@ public function getAll(){
 public function getById(int $id): ?Contato
 {
 
-  $stmt = $this->db->prepare("SELECT * FROM agenda.contatos WHERE id = :id");
+  $stmt = $this->db->prepare("SELECT * FROM agenda.contato WHERE id = :id");
   $stmt->bindParam(':id', $id);
   $stmt->execute();
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   return $row ? new Contato($row['id'], $row['nome'], $row['telefone'], $row['email'], $row['endereco']) :null;     
 }
 public function create(Contato $contatos){
- $sql="INSERT INTO contatos(nome,telefone,email,endereco) VALUES(:nome,:telefone,:email,:endereco)";
+ $sql="INSERT INTO contato(nome,telefone,email,endereco) VALUES(:nome,:telefone,:email,:endereco)";
  $stmt= $this->db->prepare($sql);
  $nome = $contatos->getNome();
  $telefone = $contatos->getTelefone();
@@ -44,7 +44,7 @@ public function create(Contato $contatos){
 }
 public function delete(int $id): void
 {
-    $stmt = $this->db->prepare("DELETE FROM contatos WHERE id = :id");
+    $stmt = $this->db->prepare("DELETE FROM contato WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
 }
