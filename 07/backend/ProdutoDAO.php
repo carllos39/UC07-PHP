@@ -8,20 +8,52 @@ class ProdutoDAO{
 
     public function __construct()
     {
-        $db = Database::getInstance();
+        $this->db = Database::getInstance();
     }
     public function getAll():array{
-
-        return [];
+        $sql="SELECT*FROM produtos";
+        $produtos=[];
+        $stmt=$this->db->query($sql);
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+         $produtos[] = new Produto($row['id'],
+                                 $row['nome'],
+                                 $row['preco'],
+                                 $row['ativo'],
+                                 $row['dataDeCadastro'],
+                                 $row['dataDeValidade']
+        );
+        }
+        return $produtos;
     }
 
-    public function getById($id): ?Produto{
-
-        return null;
-
+    public function getById(int $id) :? Produto{
+        $sql="SELECT*FROM produtos WHERE id = :id";
+        $stmt =$this->db->prepare($sql);
+        $stmt->execute([":id" =>$id]);
+        $row =$stmt->fetch(PDO::FETCH_ASSOC);
+        return $row? new Produto(
+            
+                $row['id'],
+                $row['nome'],
+                $row['preco'],
+                $row['ativo'],
+                $row['dataDeCadastro'],
+                $row['dataDeValidade']
+            
+            ):null;
     }
 
     public function create(Produto $produto) :void{
+    $sql="INSERT INTO produtos(nome,preco,ativo,dataDeCadastro,dataDeValidade)
+    VALUES(:nome,:preco,:ativo,:cadastro,:validade)";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+      ':nome'=>$produto->getNome(),
+      ':preco'=>$produto->getPreco(),
+      ':ativo'=>$produto->getAtivo(),
+      ':cadastro'=>$produto->getDataDeCadastro(),
+      ':validade'=>$produto->getDataDeValidade()
+    ]);
 
     }
     
@@ -38,13 +70,31 @@ class ProdutoDAO{
     // }
 
     public function update(Produto $produto){
+        $sql="UPDATE produtos SET nome = :nome, preco = :preco, ativo = :ativo, dataDeCadastro = :cadastro, dataDeValidade = :validade WHERE id = :id";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+      ':id'=> $produto->getId(),
+      ':nome'=>$produto->getNome(),
+      ':preco'=>$produto->getPreco(),
+      ':ativo'=>$produto->getAtivo(),
+      ':cadastro'=>$produto->getDataDeCadastro(),
+      ':validade'=>$produto->getDataDeValidade()
+    ]);
 
     }
     public function delete (int $id){
 
     }
 }
-$dao =new ProdutoDAO();
-$produto = new Produto(null, "'Teste2', 0, 0, '2025-01-01', '2025-12-12'); DROP TABLE produtos #", );
-$dao->createInseguro($produto);
+$dao = new ProdutoDAO();
+//$produto = new Produto(null, 'laranja', 7.00, 1,'2025-10-10', '2025-10-10');
+$produto = $dao->getById(1);
+$produto->setNome("Laranja");
+$dao->update($produto);
+
+
+// $dao =new ProdutoDAO();
+// $produto = new Produto(null, "'Teste2', 0, 0, '2025-01-01', '2025-12-12'); DROP TABLE produtos #", );
+// $dao->createInseguro($produto);
 ?>
