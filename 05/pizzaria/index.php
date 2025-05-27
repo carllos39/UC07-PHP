@@ -41,11 +41,11 @@ if(isset($_POST['id'])){
         </div>
                <div>
             <label for="tamanho">Tamanho :</label>
-            <input type="text" name="tamanho" id="tamanho" value="<?=$pizza? $pizza->getSabor():''?>">
+            <input type="text" name="tamanho" id="tamanho" value="<?=$pizza? $pizza->getTamanho():''?>">
         </div>
                <div>
             <label for="preco">Preço :</label>
-            <input type="text" name="preco" id="preco" value="<?=$pizza? $pizza->getSabor():''?>">
+            <input type="text" name="preco" id="preco" value="<?=$pizza? $pizza->getPreco():''?>">
         </div>
         <input type="submit" value="Cadastrar">
     </form>

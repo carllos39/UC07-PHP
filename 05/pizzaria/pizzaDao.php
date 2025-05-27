@@ -33,7 +33,7 @@ class PizzaDAO
         public function getById($id){
             try{
              $sql="SELECT * FROM pizza WHERE id=:id"; 
-            $stmt = $this->bd->query($sql);
+            $stmt = $this->bd->prepare($sql);
             $stmt->execute([':id'=>$id]);
             $pizza=$stmt->fetch(PDO::FETCH_ASSOC);
             return  $pizza = new Pizza(
@@ -61,19 +61,18 @@ class PizzaDAO
             $stmt->bindParam(':preco', $preco);
             $stmt->execute();
         }
-        public function alterar(Pizza $pizza) {
-            $stmt = $this->bd->prepare("UPDATE pizza SET sabor=:sabor, tamanho=:tamanho, preco=:preco");
+        public function update(Pizza $pizza) {
+            $stmt = $this->bd->prepare("UPDATE pizza SET sabor=:sabor, tamanho=:tamanho, preco=:preco WHERE id=:id");
 
-    
             $sabor = $pizza->getSabor();
             $tamanho = $pizza->getTamanho();
             $preco = $pizza->getPreco();
-            $Id = $pizza->getId();
-    
+            $id = $pizza->getId();
+
+            $stmt->bindParam(':id', $id);
             $stmt->bindParam(':sabor', $sabor);
             $stmt->bindParam(':tamanho', $tamanho );
             $stmt->bindParam(':preco', $preco);
-            $stmt->bindParam(':id', $id);
             $stmt->execute();
         }
         public function delete($id){
