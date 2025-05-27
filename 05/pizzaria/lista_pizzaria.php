@@ -1,5 +1,5 @@
 <?php
-require 'PizzaDAO.php';
+require_once 'pizzaDao.php';
 
 $bd = new PizzaDAO();
 $pizzas = $bd->getAll();
@@ -12,6 +12,7 @@ $pizzas = $bd->getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Pizzas</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 
 <body>
@@ -23,6 +24,7 @@ $pizzas = $bd->getAll();
             <th>Tamanho :</th>
             <th>Preço:</th>
             <th>Ação</th>
+            <th>Ação</th>
         </tr>
             <?php foreach($pizzas as $pizza){?>
              <tr>
@@ -30,7 +32,8 @@ $pizzas = $bd->getAll();
                 <td><?=$pizza->getSabor()?></td>
                 <td><?=$pizza->getTamanho()?></td>
                 <td><?=$pizza->getPreco()?></td>
-                <td><a href="delete_pizza.php?id=<?=$pizza->getId()?>"></a></td>
+                <td><a href="index.php?id=<?=$pizza->getId()?>">Alterar</a></td>
+                <td><a href="delete_pizza.php?id=<?=$pizza->getId()?>">Excluir</a></td>
              </tr>
             <?php }?>
         </tr>
