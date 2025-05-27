@@ -11,14 +11,14 @@ public function __construct()
 
 public function getAll(){
     $sql="SELECT* FROM contato";
-    $contato=[];
+    $contatos=[];
    $stmt = $this->db->query($sql);
 
    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
   
-  $contato[] = new Contato($row['id'],$row['nome'],$row['telefone'],$row['email'],$row['endereco']);
+  $contatos[] = new Contato($row['id'],$row['nome'],$row['telefone'],$row['email'],$row['endereco']);
    }
-   return $contato;
+   return $contatos;
 }
 public function getById(int $id): ?Contato
 {
@@ -42,6 +42,7 @@ public function create(Contato $contato){
  $stmt->bindParam(':endereco',$endereco);
  $stmt->execute();
 }
+
 public function update(Contato $contato){
  $sql="UPDATE contato SET nome=:nome,telefone=:telefone,email=:email,endereco=:endereco WHERE id=:id";
  $stmt= $this->db->prepare($sql);
@@ -57,7 +58,6 @@ public function update(Contato $contato){
  $stmt->bindParam(':endereco',$endereco);
  $stmt->execute();
 }
-
 public function delete(int $id): void
 {
     $stmt = $this->db->prepare("DELETE FROM contato WHERE id = :id");
