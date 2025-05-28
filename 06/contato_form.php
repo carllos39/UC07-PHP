@@ -3,25 +3,28 @@ require_once 'ContatoDAO.php';
 $dao = new ContatoDAO();
 $contato = null; // Contato para a edição
 
-// Editar Contato
-if(isset($_GET['id'])) {
-    $contato = $dao->getById($_GET['id']);
+$contato=null; //Contato para edição
+
+//Editar contato
+if(isset($_GET['id'])){
+$contato=$dao->getById($_GET['id']);
 }
+//Salvar a edição de contato
+if(isset($_POST['id'])){
 
-// Salvar Edição de Contato
-if(isset($_POST['id'])) {
-    $endereco = null;
-    if(isset($_POST['endereco']))
-    {
-        $endereco = $_POST['endereco'];
-    }
+    $endereco =null;
+if(isset($_POST['endereco'])){
 
-    $contato = new Contato($_POST['id'], $_POST['nome'], $_POST['telefone'], $_POST['email'], $endereco);
-    $dao->update($contato);    
+    $endereco = $_POST['endereco'];
+}
+   $contato = new Contato($_POST['id'], $_POST['nome'], $_POST['telefone'],$_POST['email'], $endereco);
+    $dao->update($contato);
 
-    header("Location: index.php");
+      header("Location: index.php");
 
-    exit();
+      exit();
+
+
 } else if(isset($_POST['nome']) && isset($_POST['telefone']) && isset($_POST['email']))
 {
     $endereco = null;
@@ -46,27 +49,30 @@ if(isset($_POST['id'])) {
     <title>Cadastrar Contato</title>
 </head>
 <body>
-    <h2><?= $contato? "Editar Contato" : "Cadastrar Novo Contato" ?></h2>
+<h2><?=$contato?"Editar Contato" :"Novo Contato"?></h2>
 
-    <form action="contato_form.php" method="post">
-        <?php if ($contato): ?>
-            <input type="hidden" name="id" value="<?= $contato->getId() ?>">
-        <?php endif; ?>
-
-        <label>Nome:</label>
-        <input type="text" name="nome" required value="<?= $contato? $contato->getNome() : ''?>"><br>
-
-        <label>Telefone:</label>
-        <input type="text" name="telefone" required value="<?= $contato? $contato->getTelefone() : ''?>"><br>
-
-        <label>Email:</label>
-        <input type="text" name="email" required value="<?= $contato? $contato->getEmail() : ''?>"><br>
-
-        <label>Endereço:</label>
-        <input type="text" name="endereco" value="<?= $contato? $contato->getEndereco() : ''?>"><br>
-
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
-    </form>
+<form action="contato_form.php" method="post">
+    <?php if($contato): ?>
+    <input type="hidden" name="id"  value="<?=$contato->getId()?>">
+    <?php endif;?>
+    <div>
+    <label>Nome:</label>
+    <input type="text" name="nome" required value="<?= $contato ?$contato->getNome():''?>">
+    </div>
+    <div>
+    <label>Telefone:</label>
+    <input type="text" name="telefone" required value="<?=$contato? $contato->getTelefone():''?>">
+    </div>
+    <div>
+    <label>Email:</label>
+    <input type="text" name="email" required value="<?=$contato? $contato->getEmail():''?>">
+    </div>
+    <div>
+    <label>Endereco:</label>
+    <input type="text" name="endereco" value="<?=$contato?$contato->getEndereco():''?>">
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+<a href="index.php">Cancelar</a><br>
 </body>
 </html>
