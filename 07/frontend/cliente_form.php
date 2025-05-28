@@ -1,31 +1,34 @@
 <?php 
 require_once '../backend/ClienteDAO.php';
+$dao = new ClienteDAO;
+$clientes = null;
 
-$dao = new ClienteDAO();
-
-$cliente = null;
-
-if(isset($_GET['id'])){
-$cliente = $dao->getById($_GET['id']);
+if (isset($_GET['id'])) {
+    $clientes = $dao->getById($_GET['id']);
 }
 
-if($_POST){
-    $id=$_POST['id']?? null;
+if ($_POST) {
+
+    $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'];
     $cpf = $_POST['cpf'];
-    $ativo = $_POST['ativo'];
+    $ativo = $_POST['ativo'] ? true : false;
     $dataDeNascimento = $_POST['dataDeNascimento'];
+    
 
-    $cliente = new Cliente($id,$nome,$cpf,$ativo,$dataDeNascimento);
+    $clientes = new Cliente( $nome, $cpf, $ativo, $dataDeNascimento);
 
-    if($id){
-  $dao->update($cliente);
-    }else{
-   $dao->create($cliente);    
+    if ($id) {
+        $dao->update($clientes);
+    } else {
+        $dao->create($clientes);
     }
-    header("location:../index.php");
+
+    header("Location: ../index.php");
     exit;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -51,7 +54,7 @@ if($_POST){
         </div>
         <div>
             <label for="ativo">Ativo :</label>
-             <input type="checkbox" name="ativo" id="ativo" required <?=$cliente? $cliente->getAtivo():''?>>
+             <input type="checkbox" name="ativo" id="ativo" required value="1" <?=$cliente && $cliente->getAtivo() ?'checked' :''?>>
         </div>
         <div>
             <label for="data">Data de Nascimento :</label>

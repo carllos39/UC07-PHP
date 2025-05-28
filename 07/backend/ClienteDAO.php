@@ -42,13 +42,13 @@ class ClienteDAO{
         }
 
         public function create(Cliente $clientes){
-            $sql="INSERT INTO clientes(nome,cpf,ativo,dataDeNascimento) VALUE(:nome,:cpf,:ativo,:dataDeNascimento)";
+            $sql="INSERT INTO clientes(nome,cpf,ativo,dataDeNascimento) VALUES(:nome,:cpf,:ativo,:dataDeNascimento)";
             $stmt=$this->db->prepare($sql);
-            $stmt ->execute([
-                'nome'=>$clientes->getNome(),
-                'cpf'=>$clientes->getCpf(),
-                'ativo'=>$clientes->getAtivo(),
-                'dataDeNascimento'=>$clientes->getDataDeNascimento(),
+            $stmt->execute([
+                ':nome'=>$clientes->getNome(),
+                ':cpf'=>$clientes->getCpf(),
+                ':ativo'=>$clientes->getAtivo(),
+                ':dataDeNascimento'=>$clientes->getDataDeNascimento()
             ]);
         }
 
@@ -56,18 +56,21 @@ class ClienteDAO{
             $sql="UPDATE clientes SET nome=:nome,cpf=:cpf,ativo=:ativo,dataDeNascimento=:dataDeNascimento WHERE id=:id";
             $stmt=$this->db->prepare($sql);
             $stmt->execute([
-                'id'=>$clientes->getId(),
-                'nome'=>$clientes->getNome(),
-                'cpf'=>$clientes->getCpf(),
-                'ativo'=>$clientes->getAtivo(),
-                'dataDeNascimento'=>$clientes->getDataDeNascimento(),
+                ':id'=>$clientes->getId(),
+                ':nome'=>$clientes->getNome(),
+                ':cpf'=>$clientes->getCpf(),
+                ':ativo'=>$clientes->getAtivo(),
+                ':dataDeNascimento'=>$clientes->getDataDeNascimento()
             ]);
         }
         public function delete( $id){
             $sql="DELETE FROM clientes  WHERE id=:id";
             $stmt=$this->db->prepare($sql);
-            $stmt ->execute(['id'=>$id, ]);
+            $stmt ->execute([':id'=>$id, ]);
         }
         
     }
+    // $clientes= new Cliente(null,"Katia Regina","12365478901","1","1971-08-03");
+    // $dao = new ClienteDAO();
+    // $dao->create($clientes);
 ?>

@@ -1,12 +1,12 @@
 <?php 
 class Cliente{
-    private ?int $id;
+    private ? int $id;
     private string $nome;
     private string $cpf;
-    private string $ativo;
+    private bool $ativo;
     private string $dataDeNascimento;
 
-    public function __construct(int $id,string $nome,string $cpf,string $ativo,string $dataDeNascimento){
+    public function __construct(?int $id,string $nome,string $cpf,bool $ativo,string $dataDeNascimento){
     $this->id = $id;
     $this->nome = $nome;
     $this->cpf = $cpf;
@@ -15,7 +15,7 @@ class Cliente{
 
     }
 
-    public function getId(){
+    public function getId():?int{
         return $this->id;
     }
     public function setId(int $id){
@@ -33,13 +33,14 @@ class Cliente{
         return $this->cpf;
     }
     public function setCpf(string $cpf){
+        
          $this->id =$cpf;
     }
 
     public function getAtivo(){
         return $this->ativo;
     }
-    public function setAtivo(string $ativo){
+    public function setAtivo(bool $ativo){
          $this->id =$ativo;
     }
 
