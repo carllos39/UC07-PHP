@@ -1,18 +1,19 @@
 <?php 
-require_once './Database.php.php';
+require_once 'Database.php';
+require_once 'Cliente.php';
 
 class ClienteDAO{
-    private $bd;
+    private $db;
 
     public function __construct()
     {
-     $this->bd= Database::getInstance();  
+     $this->db= Database::getInstance();  
     }
 
     public function getAll(){
-        $sql="SELECT*FROM cliente";
+        $sql="SELECT*FROM clientes";
         $clientes=[];
-        $stmt=$this->bd->query($sql);
+        $stmt=$this->db->query($sql);
         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             $clientes[] = new Cliente(
                     $row['id'],
@@ -27,8 +28,8 @@ class ClienteDAO{
     }
 
     public function getById(): ? Cliente{
-        $sql="SELECT*FROM cliente WHERE id=:id";
-        $stmt=$this->bd->prepare($sql);
+        $sql="SELECT*FROM clientes WHERE id=:id";
+        $stmt=$this->db->prepare($sql);
         return $row=$stmt->fetch(PDO::FETCH_ASSOC);
             $row?  new Cliente(
                     $row['id'],
@@ -40,32 +41,32 @@ class ClienteDAO{
             ):null;
         }
 
-        public function create(Cliente $cliente){
-            $sql="INSERT INTO cliente(nome,cpf,ativo,dataDeNascimento) VALUE(:nome,:cpf,:ativo,:dataDeNascimento)";
-            $stmt=$this->bd->prepare($sql);
+        public function create(Cliente $clientes){
+            $sql="INSERT INTO clientes(nome,cpf,ativo,dataDeNascimento) VALUE(:nome,:cpf,:ativo,:dataDeNascimento)";
+            $stmt=$this->db->prepare($sql);
             $stmt ->execute([
-                'nome'=>$cliente->getNome(),
-                'cpf'=>$cliente->getCpf(),
-                'ativo'=>$cliente->getAtivo(),
-                'dataDeNascimento'=>$cliente->getDataDeNascimento(),
+                'nome'=>$clientes->getNome(),
+                'cpf'=>$clientes->getCpf(),
+                'ativo'=>$clientes->getAtivo(),
+                'dataDeNascimento'=>$clientes->getDataDeNascimento(),
             ]);
         }
 
-        public function updater(Cliente $cliente){
-            $sql="UPDATE cliente SET nome=:nome,cpf=:cpf,ativo=:ativo,dataDeNascimento=:dataDeNascimento WHERE id=:id";
-            $stmt=$this->bd->prepare($sql);
-            $stmt -> execute([
-                'id'=>$cliente->getId(),
-                'nome'=>$cliente->getNome(),
-                'cpf'=>$cliente->getCpf(),
-                'ativo'=>$cliente->getAtivo(),
-                'dataDeNascimento'=>$cliente->getDataDeNascimento(),
+        public function update(Cliente $clientes){
+            $sql="UPDATE clientes SET nome=:nome,cpf=:cpf,ativo=:ativo,dataDeNascimento=:dataDeNascimento WHERE id=:id";
+            $stmt=$this->db->prepare($sql);
+            $stmt->execute([
+                'id'=>$clientes->getId(),
+                'nome'=>$clientes->getNome(),
+                'cpf'=>$clientes->getCpf(),
+                'ativo'=>$clientes->getAtivo(),
+                'dataDeNascimento'=>$clientes->getDataDeNascimento(),
             ]);
         }
-        public function excluir( $id){
-            $sql="DELETE FROM cliente  WHERE id=:id";
-            $stmt=$this->bd->prepare($sql);
-            $stmt -> execute(['id'=>$id, ]);
+        public function delete( $id){
+            $sql="DELETE FROM clientes  WHERE id=:id";
+            $stmt=$this->db->prepare($sql);
+            $stmt ->execute(['id'=>$id, ]);
         }
         
     }
