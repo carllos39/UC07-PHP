@@ -27,11 +27,12 @@ class ClienteDAO{
         return $clientes;
     }
 
-    public function getById(): ? Cliente{
+    public function getById(int $id): ? Cliente{
         $sql="SELECT*FROM clientes WHERE id=:id";
         $stmt=$this->db->prepare($sql);
-        return $row=$stmt->fetch(PDO::FETCH_ASSOC);
-            $row?  new Cliente(
+        $stmt->execute([':id'=> $id]);
+         $row=$stmt->fetch(PDO::FETCH_ASSOC);
+           return $row?  new Cliente(
                     $row['id'],
                     $row['nome'],
                     $row['cpf'],
@@ -73,4 +74,17 @@ class ClienteDAO{
     // $clientes= new Cliente(null,"Katia Regina","12365478901","1","1971-08-03");
     // $dao = new ClienteDAO();
     // $dao->create($clientes);
+
+    // public function getAllAlternativo(): array
+    // {
+    //     $reulstado = $this->db->query("SELECT * FROM clientes")->fetchAll();
+    //     $clientes = [];
+
+    //     foreach($reulstado as $res)
+    //     {
+    //         $clientes[] = new Cliente($res['id'], $res['nome'], $res['cpf'], $res['dataDeNascimento'], $res['ativo']);
+    //     }
+
+    //     return  $clientes;
+    // }
 ?>

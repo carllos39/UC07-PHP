@@ -16,7 +16,7 @@ if ($_POST) {
     $dataDeNascimento = $_POST['dataDeNascimento'];
     
 
-    $clientes = new Cliente( $nome, $cpf, $ativo, $dataDeNascimento);
+    $clientes = new Cliente($id, $nome, $cpf, $ativo, $dataDeNascimento);
 
     if ($id) {
         $dao->update($clientes);
@@ -39,26 +39,26 @@ if ($_POST) {
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <h2><?=$cliente? "Editar Cliente" :"Cadastrar Cliente"?></h2>
+    <h2><?=$clientes? "Editar Cliente" :"Cadastrar Cliente"?></h2>
     <form action="cliente_form.php" method="post">
-        <?php if($cliente):?>
-        <input type="hidden" name="id" value="<?=$cliente->getId()?>">
+        <?php if($clientes):?>
+        <input type="hidden" name="id" value="<?=$clientes->getId()?>">
         <?php endif; ?>
         <div>
             <label for="nome">Nome :</label>
-             <input type="text" name="nome" id="nome" required <?=$cliente? $cliente->getNome():''?>>
+             <input type="text" name="nome" id="nome" required value="<?=$clientes? $clientes->getNome():''?>">
         </div>
         <div>
             <label for="cpf">Cpf :</label>
-             <input type="text" name="cpf" id="cpf" required <?=$cliente? $cliente->getCpf():''?>>
+             <input type="text" name="cpf" id="cpf" required  value="<?=$clientes? $clientes->getCpf():''?>">
         </div>
         <div>
             <label for="ativo">Ativo :</label>
-             <input type="checkbox" name="ativo" id="ativo" required value="1" <?=$cliente && $cliente->getAtivo() ?'checked' :''?>>
+             <input type="checkbox" name="ativo" id="ativo" required value="1" value=" <?=$clientes && $clientes->getAtivo() ?'checked' :''?>">
         </div>
         <div>
             <label for="data">Data de Nascimento :</label>
-             <input type="date" name="dataDeNascimento" id="dataDeNascimento" required <?=$cliente? $cliente->getDataDeNascimento():''?>>
+             <input type="date" name="dataDeNascimento" id="dataDeNascimento" required  value="<?=$clientes? $clientes->getDataDeNascimento():''?>">
         </div>
         <input type="submit" value="Salvar">
     </form>

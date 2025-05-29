@@ -1,5 +1,6 @@
 <?php 
 require_once '../backend/ClienteDAO.php';
+
 if(!isset( $_GET['id'])){
 header("location:../index.php");
 exit;
@@ -7,7 +8,7 @@ exit;
 $dao = new ClienteDAO();
 
 $clientes= $dao->getById($_GET['id']);
-if(!$cliente){
+if(!$clientes){
     echo "Cliente não encontrado!";
     echo "<a href='../index.php'>Voltar</a>";
     exit;
@@ -24,11 +25,11 @@ if(!$cliente){
 <body>
     <h2>Detalhes dos Clientes</h2>
     <ul>
-        <li><strong>ID:</strong><?=$cliente->getId()?></li>
-        <li><strong>Nome:</strong><?=$cliente->getNome()?></li>
-        <li><strong>Cpf:</strong><?=$cliente->getCpf?></li>
-        <li><strong>Ativo:</strong><?=$cliente->getAtivo?></li>
-        <li><strong>Data de Nascimento:</strong><?=$cliente->getDataDeNascimento?></li>
+        <li><strong>ID:</strong><?=$clientes->getId()?></li>
+        <li><strong>Nome:</strong><?=$clientes->getNome()?></li>
+        <li><strong>Cpf:</strong><?=$clientes->getCpf()?></li>
+        <li><strong>Ativo:</strong><?=$clientes->getAtivo()?></li>
+        <li><strong>Data de Nascimento:</strong><?=$clientes->getDataDeNascimento()?></li>
     </ul>
 
 </body>

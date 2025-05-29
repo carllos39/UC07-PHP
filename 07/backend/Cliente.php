@@ -26,7 +26,7 @@ class Cliente{
         return $this->nome;
     }
     public function setNome(string $nome){
-         $this->id =$nome;
+         $this->nome =$nome;
     }
     
     public function getCpf(){
@@ -34,21 +34,21 @@ class Cliente{
     }
     public function setCpf(string $cpf){
         
-         $this->id =$cpf;
+         $this->cpf =$cpf;
     }
 
     public function getAtivo(){
         return $this->ativo;
     }
     public function setAtivo(bool $ativo){
-         $this->id =$ativo;
+         $this->ativo =$ativo;
     }
 
     public function getDataDeNascimento(){
         return $this->dataDeNascimento;
     }
     public function setDataDeNascimento(string  $dataDeNascimento){
-         $this->id =$dataDeNascimento;
+         $this->dataDeNascimento = $dataDeNascimento;
     }
         
     }
