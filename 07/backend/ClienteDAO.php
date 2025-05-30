@@ -67,7 +67,7 @@ class ClienteDAO{
         public function delete( $id){
             $sql="DELETE FROM clientes  WHERE id=:id";
             $stmt=$this->db->prepare($sql);
-            $stmt ->execute([':id'=>$id, ]);
+            $stmt ->execute([':id'=> $id ]);
         }
         
     }
