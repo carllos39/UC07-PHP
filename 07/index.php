@@ -1,6 +1,6 @@
 <?php
-require_once './backend/ProdutoDAO.php';
-require_once './backend/ClienteDAO.php';
+require_once '../backend/ProdutoDAO.php';
+require_once '../backend/ClienteDAO.php';
 
 $dao = New ProdutoDAO();
 $produtos = $dao->getAll();
