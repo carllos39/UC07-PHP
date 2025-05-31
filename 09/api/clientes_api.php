@@ -1,23 +1,22 @@
 <?php 
 header('Content-Type: application/json');
-require_once __DIR__."/../dao/ClienteDAO.php";
 
-$dao= new ClienteDAO();
+require_once __DIR__ .'/../dao/ClienteDAO.php';
 
-$action = $_GET['action']?? null;
+$dao = new ClienteDAO();
+var_dump($dao);
+exit;
+$action = $_GET['action'] ?? null;
 
-switch($action){
-
-case 'listar':
-
-echo json_encode($dao->getAll());  
-break;
-
-default:
-
-http_response_code(400);
-echo json_encode(['error' => 'Açao inválida, informar action']);
-break;
+switch ($action)
+{
+    case 'listar':
+        echo json_encode($dao->getAll());
+        break;
+    default:
+        http_response_code(400);
+        echo json_encode(['error' => 'Ação inválida, informar action']);
+        break;
 }
 
 

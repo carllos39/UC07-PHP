@@ -15,41 +15,11 @@ class Cliente implements JsonSerializable{
 
     }
 
-    public function getId():?int{
-        return $this->id;
-    }
-    public function setId(int $id){
-         $this->id =$id;
-    }
-    
-    public function getNome(){
-        return $this->nome;
-    }
-    public function setNome(string $nome){
-         $this->nome =$nome;
-    }
-    
-    public function getCpf(){
-        return $this->cpf;
-    }
-    public function setCpf(string $cpf){
-        
-         $this->cpf =$cpf;
-    }
-
-    public function getAtivo(){
-        return $this->ativo;
-    }
-    public function setAtivo(bool $ativo){
-         $this->ativo =$ativo;
-    }
-
-    public function getDataDeNascimento(){
-        return $this->dataDeNascimento;
-    }
-    public function setDataDeNascimento(string  $dataDeNascimento){
-         $this->dataDeNascimento = $dataDeNascimento;
-    }
+    public function getId(): ?int { return $this->id; }
+    public function getNome(): string { return $this->nome; }
+    public function getCpf(): string { return $this->cpf; }
+    public function getDataDeNascimento(): string { return $this->dataDeNascimento; }
+    public function getAtivo(): bool { return $this->ativo; }
       
     public function jsonSerialize(): mixed
     {
