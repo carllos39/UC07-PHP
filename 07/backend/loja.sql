@@ -9,8 +9,10 @@ CREATE TABLE IF NOT EXISTS produtos (
     preco DECIMAL(10, 2) NOT NULL,
     ativo BOOLEAN NOT NULL DEFAULT 1,
     dataDeCadastro DATE NOT NULL,
-    dataDeValidade DATE
-);
+    dataDeValidade DATE,
+    clienteId int not null,
+    CONSTRAINT fk_produtos_clientes FOREIGN KEY(clienteId)REFERENCES clientes(id));
+
 
 -- CRIA A TABELA DE CLIENTES
 CREATE TABLE IF NOT EXISTS clientes (
@@ -19,4 +21,5 @@ CREATE TABLE IF NOT EXISTS clientes (
     cpf VARCHAR(14) NOT NULL,
     ativo BOOLEAN NOT NULL DEFAULT 1,
     dataDeNascimento DATE NOT NULL
+    
 );
