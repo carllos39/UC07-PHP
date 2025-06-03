@@ -1,6 +1,6 @@
 <?php 
+require_once 'Produto.php';
 require_once 'Database.php';
-require_once 'Cliente.php';
 
 class ClienteDAO{
     private $db;
@@ -71,20 +71,4 @@ class ClienteDAO{
         }
         
     }
-    // $clientes= new Cliente(null,"Katia Regina","12365478901","1","1971-08-03");
-    // $dao = new ClienteDAO();
-    // $dao->create($clientes);
-
-    // public function getAllAlternativo(): array
-    // {
-    //     $reulstado = $this->db->query("SELECT * FROM clientes")->fetchAll();
-    //     $clientes = [];
-
-    //     foreach($reulstado as $res)
-    //     {
-    //         $clientes[] = new Cliente($res['id'], $res['nome'], $res['cpf'], $res['dataDeNascimento'], $res['ativo']);
-    //     }
-
-    //     return  $clientes;
-    // }
 ?>

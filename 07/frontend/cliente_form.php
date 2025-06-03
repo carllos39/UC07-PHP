@@ -30,6 +30,9 @@ if ($_POST) {
 
 
 ?>
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

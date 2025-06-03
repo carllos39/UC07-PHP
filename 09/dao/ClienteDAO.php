@@ -1,23 +1,26 @@
 <?php
-require_once __DIR__.'/../model/Cliente.php';
-require_once __DIR__.'/../Database.php';
 
-class ClienteDAO{
+require_once __DIR__ . '/../model/Cliente.php';
+require_once __DIR__ . '/../Database.php';
 
+class ClienteDAO
+{
     private PDO $db;
-    public function __construct(){
-$this->db= Database::getInstance();
+
+    public function __construct()
+    {
+        $this->db = Database::getInstance();
     }
+
     public function getAll(): array
     {
         $stmt = $this->db->query("SELECT * FROM clientes");
         $clientesData = $stmt->fetchAll();
         $clientes = [];
 
-        foreach($clientesData as $data){
+        foreach($clientesData as $data) {
             $clientes[] = new Cliente($data['id'], $data['nome'], $data['cpf'], $data['dataDeNascimento'], $data['ativo']);
         }
-        
         return $clientes;
     }
 
@@ -26,12 +29,14 @@ $this->db= Database::getInstance();
         $stmt = $this->db->prepare("SELECT * FROM clientes WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $data=$stmt->fetch();
-        if($data){
-            return new Cliente($data['id'], $data['nome'], $data['cpf'], $data['dataDeNascimento'], $data['ativo']); 
+        $data = $stmt->fetch();
+        if($data) {
+            return new Cliente($data['id'], $data['nome'], $data['cpf'], $data['dataDeNascimento'], $data['ativo']);
         }
+        
         return null;
     }
+
     public function create(Cliente $cliente): bool
     {
         $sql = "INSERT INTO clientes (nome, cpf, dataDeNascimento, ativo) VALUES (:nome, :cpf, :dataDeNascimento, :ativo)";
@@ -40,10 +45,11 @@ $this->db= Database::getInstance();
         return $stmt->execute([
             ':nome' => $cliente->getNome(),
             ':cpf' => $cliente->getCpf(),
-            ':dataDeNascimento'=> $cliente->getDataDeNascimento(),
+            ':dataDeNascimento' => $cliente->getDataDeNascimento(),
             ':ativo' => $cliente->getAtivo() ? 1 : 0
         ]);
     }
+
     public function update(Cliente $cliente): bool
     {
         $sql = "UPDATE clientes SET nome = :nome, cpf = :cpf, dataDeNascimento = :dataDeNascimento, ativo = :ativo WHERE id = :id";
@@ -63,9 +69,6 @@ $this->db= Database::getInstance();
         $stmt = $this->db->prepare("DELETE FROM clientes WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
-
     }
-        
-    }
-
+}
 ?>
