@@ -1,6 +1,6 @@
 <?php
 require_once '../Database.php';
-require_once  '../model/Cliente.php';
+require_once  '../model/Produto.php';
 
 class ProdutoDAO{
 
@@ -29,12 +29,13 @@ class ProdutoDAO{
         return $produtos;
         }
 
-        public function getById($id) :Produto{
+        public function getById($id) : ?Produto{
             $sql="SELECT * FROM produtos WHERE id=:id";
         
-            $stmt =$this->db->query($sql);
-          return $row =$stmt->fetch(PDO::FETCH_ASSOC);
-            $row ?new Produto(
+            $stmt =$this->bd->prepare($sql);
+            $stmt->execute(['id'=>$id]);
+          $row =$stmt->fetch(PDO::FETCH_ASSOC);
+           return $row ?new Produto(
                 $row['id'],
                 $row['nome'],
                 $row['preco'],

@@ -1,4 +1,4 @@
-const apiUrlBase = 'RAIZ_DO_BACKEND_CLIENTES'; // Ajuste se necessário
+const apiUrlBase = 'http://localhost/UC07-PHP/09/api/clientes_api.php'; // Ajuste se necessário
 const mensagemDiv = document.getElementById('mensagem');
 
 function exibirMensagem(msg, tipo = 'info') {
@@ -157,7 +157,7 @@ if (document.getElementById('formCliente')) {
 
 // Adicione a apiUrlBase para produtos se for diferente, ou use a mesma.
 // Para este exemplo, vamos assumir que a estrutura da URL é similar.
-const apiUrlProdutos = 'RAIZ_DO_BACKEND_CLIENTES'; // Ajuste se necessário
+const apiUrlProdutos = 'http://localhost/UC07-PHP/09/api/produtos_api.php'; // Ajuste se necessário
 
 // --- LÓGICA PARA produtos.html ---
 if (document.getElementById('tabelaProdutos')) {
