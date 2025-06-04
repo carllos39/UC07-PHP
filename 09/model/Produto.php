@@ -1,6 +1,6 @@
 <?php
 
-class Produto
+class Produto implements JsonSerializable
 {
     // Tive dificuldade nessa interrogação
     private ?int $id;
@@ -34,4 +34,17 @@ class Produto
     public function setAtivo(bool $ativo) { $this->ativo = $ativo; }
     public function setDataDeCadastro(string $cadastro) { $this->dataDeCadastro = $cadastro; }
     public function setDataDeValidade(?string $validade) { $this->dataDeValidade = $validade; }
+
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'preco' => $this->preco,
+            'ativo' => $this->ativo,
+            'dataDeCadastro' => $this->dataDeCadastro,
+            'dataDeValidade' => $this->dataDeValidade,
+        ];
+    }
 }
