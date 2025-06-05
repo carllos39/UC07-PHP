@@ -13,9 +13,9 @@ class ProdutoDAO{
     public function getAll(){
         $sql="SELECT * FROM produtos";
         $produtos=[];
-        $stmt =$this->bd->query($sql);
+        $stmt = $this->bd->query($sql);
        while($row =$stmt->fetch(PDO::FETCH_ASSOC)){
-        $produtos[] =new Produto(
+        $produtos[] = new Produto(
             $row['id'],
             $row['nome'],
             $row['preco'],
@@ -33,7 +33,7 @@ class ProdutoDAO{
             $sql="SELECT * FROM produtos WHERE id=:id";
         
             $stmt =$this->bd->prepare($sql);
-            $stmt->execute(['id'=>$id]);
+            $stmt->execute([':id'=>$id]);
           $row =$stmt->fetch(PDO::FETCH_ASSOC);
            return $row ?new Produto(
                 $row['id'],
@@ -47,8 +47,11 @@ class ProdutoDAO{
         
             }
            public function create(Produto $produtos){
+
           $sql="INSERT INTO produtos(nome,preco,ativo,dataDeCadastro,dataDeValidade)
+
           VALUES(:nome,:preco,:ativo,:dataDeCadastro,:dataDeValidade)";
+
           $stmt =$this->bd->prepare($sql);
           $stmt->execute([
             ':nome'=>$produtos->getNome(),
@@ -57,6 +60,7 @@ class ProdutoDAO{
             ':dataDeCadastro'=>$produtos->getDataDeCadastro(),
             ':dataDeValidade'=>$produtos->getDataDeValidade()
           ]);
+          
            }
            public function update(Produto $produtos){
             $sql="UPDATE produtos SET nome=:nome,preco=:preco,ativo=:ativo,dataDeCadastro=:dataDeCadastro,dataDeValidade=:dataDeValidade WHERE id=:id";
@@ -78,6 +82,9 @@ class ProdutoDAO{
                  }
             }
 
+          //   $prod = new Produto(null,"limão",5.00,"true",2025-06-04,2025-06-10);
+          //  $dao = new ProdutoDAO();
+          //  $dao->create($prod);
 
 
     

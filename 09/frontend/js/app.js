@@ -157,7 +157,7 @@ if (document.getElementById('formCliente')) {
 
 // Adicione a apiUrlBase para produtos se for diferente, ou use a mesma.
 // Para este exemplo, vamos assumir que a estrutura da URL é similar.
-const apiUrlProdutos = 'http://localhost/UC07-PHP/09/api/produtos_api.php'; // Ajuste se necessário
+const apiUrlProdutos = 'http://localhost/carlos/UC07-PHP/09/api/produtos_api.php'; // Ajuste se necessário
 
 // --- LÓGICA PARA produtos.html ---
 if (document.getElementById('tabelaProdutos')) {
