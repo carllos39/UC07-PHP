@@ -25,10 +25,10 @@ class UsuarioDAO
         ]);
     }
 
-    public function getByEmail(string $email) : ?Usuario
+    public function getByEmail(string $token) : ?Usuario
     {
         $stmt = $this->db->prepare("SELECT * FROM usuario WHERE email = :email");
-        $stmt->execute([':email' => $email]);
+        $stmt->execute([':email' => $token]);
         $data = $stmt->fetch();
 
         return $data ?

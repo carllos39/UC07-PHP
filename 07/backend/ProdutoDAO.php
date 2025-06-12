@@ -38,7 +38,7 @@ class ProdutoDAO
         $stmt = $this->db->prepare($sql);        
         $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row? new Produto( //Tive dificuldade nesse return
+        return $row? new Produto(
             $row['id'],
             $row['nome'],
             $row['preco'],
@@ -104,4 +104,3 @@ $produto = new Produto(null, "'Teste2', 0, 0, '2025-10-10', '2025-12-12'); DROP 
 
 $dao->createInseguro($produto);
 */
-

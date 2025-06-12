@@ -2,7 +2,6 @@
 
 class Produto
 {
-    // Tive dificuldade nessa interrogação
     private ?int $id;
     private string $nome;
     private float $preco;
@@ -35,3 +34,9 @@ class Produto
     public function setDataDeCadastro(string $cadastro) { $this->dataDeCadastro = $cadastro; }
     public function setDataDeValidade(?string $validade) { $this->dataDeValidade = $validade; }
 }
+    
+        
+    
+
+
+
