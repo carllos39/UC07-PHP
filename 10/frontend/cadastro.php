@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../UsuarioDAO.php';
 require_once '../Usuario.php';
 
@@ -24,9 +25,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
             $token = bin2hex(random_bytes(25));
+          
             $usuario = new Usuario(null, $nome, $senhaHash, $email, $token);
             if($dao->create($usuario))
             {
+                $_SESSION['token']=$token;
                 header('Location: index.php');
                 exit();
             }
