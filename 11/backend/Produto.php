@@ -1,13 +1,13 @@
 <?php 
 class Produto{
-    private int $id;
+    private ?int $id;
     private string $nome;
     private float $preco;
     private bool $ativo;
     private string $dataDeCadastro;
     private string $dataDeValidade;
 
-    public function __construct(int $id,$nome,$preco,$ativo,$dataDeCadastro,$dataDeValidade){
+    public function __construct(?int $id,$nome,$preco,$ativo,$dataDeCadastro,$dataDeValidade){
         
       $this->id = $id;
       $this->nome = $nome;

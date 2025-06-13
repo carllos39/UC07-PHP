@@ -48,5 +48,12 @@ class ProdutoDAO{
              }
              return $produtos;
         }
+        public function getById($id):?Produto{
+          $sql="SELECT * produtos WHERE id=:id";
+          $stmt = $this->bd->prepare($sql);
+          $stmt->execute([':id'=>$id]);
+          $row= $stmt->fetch(PDO::FETCH_ASSOC);
+          return $row? new Produto($row['id'],$row['nome'],$row['preco'],$row['ativo'],$row['dataDeCadastro'],$row['dataDeValidade']):null;
+        }
   }
 ?>
