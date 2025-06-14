@@ -1,34 +1,46 @@
 <?php 
 session_start();
-require_once '../backend/UsuarioDAO.php';
-require_once '../backend/Usuario.php';
+require_once '../UsuarioDAO.php';
+require_once '../Usuario.php';
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    $nome =filter_input(INPUT_POST,'nome');
-    $email =filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
-    $senha =filter_input(INPUT_POST,'senha');
-    $confirmaSenha =filter_input(INPUT_POST,'confirmaSenha');
+if($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    $nome = filter_input(INPUT_POST, 'nome');
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha = filter_input(INPUT_POST, 'senha');
+    $confirmSenha = filter_input(INPUT_POST, 'confirmSenha');
 
-    if($senha !==$confirmaSenha ||!$nome ||!$email ||!$senha){
-     $erro="Dados inválidos ou senhas não conferem!";
-    }else{
-  $dao= new UsuarioDAO();
-  if($dao ->getByEmail($email)){
-     $erro="Já existe usuario com esse email!";
-  }else{
-    $senhaHash =password_hash($senha,PASSWORD_DEFAULT);
-    $token =bin2hex(random_bytes(25));
-    $usuario =new Usuario(null,$nome,$senhaHash,$email,$token);
-   if($dao->create($usuario)){
-    $_SESSION['token']==$token;
-    header("location:..index.php");
-    exit;
-   }else{
-    $erro= "Erro ao cadastrar usuário!";
-   }
-  }
+    if($senha !== $confirmSenha || !$nome || !$email || !$senha) 
+    {
+        $erro = "Dados inválidos ou senhas não conferem!";
+    }
+    else
+    {
+        $dao = new UsuarioDAO();
+        if($dao->getByEmail($email)) 
+        {
+            $erro = "Já existe usuário com esse email";
+        }
+        else
+        {
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            $token = bin2hex(random_bytes(25));
+          
+            $usuario = new Usuario(null, $nome, $senhaHash, $email, $token);
+            if($dao->create($usuario))
+            {
+                $_SESSION['token']=$token;
+                header('Location: index.php');
+                exit();
+            }
+            else
+            {
+                $erro = "Erro ao cadastrar usuário!";
+            }
+        }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,8 +51,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+<?php if(isset($erro)) echo "<p style='color: red'>$erro</p>"; ?>
     <h1>Cadastro</h1>
-    <form action="" method="post">
+    <form action="cadastro.php" method="post">
         <div>
             <label for="nome">Nome :</label>
             <input type="text" name="nome" id="nome">

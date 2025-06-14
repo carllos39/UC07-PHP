@@ -17,6 +17,7 @@ $isLogged = isset($_SESSION['token']);
     <h1>Home</h1>
     <p>Bem vindo ao sistema de Produtos!</p>
     <nav>
+        <a href="index.php">Home</a>
         <?php if($isLogged):?>
         <a href="usuario.php">Minha Conta</a>
         <a href="logout.php">Sair</a>
