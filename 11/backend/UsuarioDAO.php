@@ -28,7 +28,6 @@ class UsuarioDAO{
     ]);
     }
 
-<<<<<<< HEAD
     public function getByEmail($email):?Usuario{
         $sql="SELECT*FROM usuario WHERE email=:email";
         $stmt=$this->bd->prepare($sql);
@@ -41,31 +40,6 @@ class UsuarioDAO{
         $sql="SELECT * FROM usuario WHERE token=:token";
         $stmt=$this->bd->prepare($sql);
         $stmt->execute([':token'=> $token]);
-=======
-    // public function getByEmail($email):?Usuario{
-    //     $sql="SELECT*FROM usuario WHERE email=:email";
-    //     $stmt=$this->bd->prepare($sql);
-    //     $stmt->execute([':email'=>$email]);
-    //     $row=$stmt->fetch(PDO::FETCH_ASSOC);
-    //     return $row ?new Usuario($row['id'],$row['nome'],$row['email'],$row['senha'],$row['token']):null; 
-
-    //     }
-    
-    public function getByEmail(string $email) : ?Usuario
-    {
-        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE email = :email");
-        $stmt->execute([':email' => $email]);
-        $data = $stmt->fetch();
-
-        return $data ?
-            new Usuario($data['id'], $data['nome'], $data['senha'], $data['email'], $data['token'])
-            : null;
-    }
-         public function getByToken($token):?Usuario{
-        $sql="SELECT*FROM usuario WHERE token=:token";
-        $stmt=$this->bd->prepare($sql);
-        $stmt->execute([':token'=>$token]);
->>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
         $row=$stmt->fetch(PDO::FETCH_ASSOC);
         return $row ?new Usuario($row['id'],$row['nome'],$row['email'],$row['senha'],$row['token']):null; 
 

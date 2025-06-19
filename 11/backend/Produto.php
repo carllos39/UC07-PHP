@@ -1,9 +1,5 @@
 <?php 
-<<<<<<< HEAD
 class Produto implements JsonSerializable{
-=======
-class Produto{
->>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
     private ?int $id;
     private string $nome;
     private float $preco;
@@ -11,11 +7,7 @@ class Produto{
     private string $dataDeCadastro;
     private string $dataDeValidade;
 
-<<<<<<< HEAD
     public function __construct(?int $id,$nome, float $preco,?bool $ativo,$dataDeCadastro,$dataDeValidade){
-=======
-    public function __construct(?int $id,$nome,$preco,$ativo,$dataDeCadastro,$dataDeValidade){
->>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
         
       $this->id = $id;
       $this->nome = $nome;

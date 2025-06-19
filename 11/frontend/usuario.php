@@ -10,11 +10,7 @@ $dao = new UsuarioDAO();
 $user= $dao->getByToken($_SESSION['token']);
 
 if(!$user){
-<<<<<<< HEAD
 $_SESSION['token'] = null;
-=======
-$_SESSION['token']=null;
->>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
 header("location:login.php");
 exit;
 }
