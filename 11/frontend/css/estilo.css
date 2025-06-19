@@ -11,7 +11,10 @@ body {
     background-color: #f9f9f9;
     color: #333;
     padding: 20px;
+<<<<<<< HEAD
     text-align: center;
+=======
+>>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
 }
 
 /* Títulos */
@@ -95,6 +98,9 @@ form {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 600px;
 }
+<<<<<<< HEAD
 div{
     text-align: center;
 }
+=======
+>>>>>>> d378a6607e2ec3a51886ccd5d81b5cd2b9cf28de
