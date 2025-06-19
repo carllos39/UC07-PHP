@@ -1,13 +1,13 @@
 <?php 
 class Usuario{
-    private int $id;
+    private ?int $id;
     private string $nome;
     private string $email;
     private string $senha;
     private string $token;
     
 
-    public function __construct(int $id,$nome,$email,$senha,$token){
+    public function __construct(?int $id,$nome,$email,$senha,$token){
         
       $this->id = $id;
       $this->nome = $nome;
